@@ -31,7 +31,7 @@
           <td colspan="7" class="text-center h-100">加載中...</td>
         </tr>
       </tbody>
-      <tbody v-else-if="filterSearch.length===0">
+      <tbody v-else-if="filterSearch.length === 0">
         <tr>
           <td colspan="7" class="text-center h-100">無符合資料...</td>
         </tr>
