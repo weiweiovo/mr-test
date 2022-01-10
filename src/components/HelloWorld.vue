@@ -26,7 +26,17 @@
           <th>國際電話區號</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="isLoading">
+        <tr>
+          <td colspan="7" class="text-center h-100">加載中...</td>
+        </tr>
+      </tbody>
+      <tbody v-else-if="filterSearch.length===0">
+        <tr>
+          <td colspan="7" class="text-center h-100">無符合資料...</td>
+        </tr>
+      </tbody>
+      <tbody v-else>
         <tr
           v-for="(item, i) in filterSearch.slice(
             pageStart,
@@ -105,7 +115,7 @@ export default {
           .reverse();
       }
       return self.countryList
-        .filter((item) => this.getName(item.name).includes(this.countryName))
+        .filter((item) => item.name.includes(this.countryName))
         .sort(function (a, b) {
           var nameA = self.getName(a.name).toUpperCase(); // ignore upper and lowercase
           var nameB = self.getName(b.name).toUpperCase(); // ignore upper and lowercase
@@ -243,5 +253,8 @@ input {
 .page-box button:active {
   color: #fff;
   background: #349469;
+}
+.h-100 {
+  height: 100px;
 }
 </style>
